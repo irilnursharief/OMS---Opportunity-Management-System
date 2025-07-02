@@ -7,13 +7,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page_title }}</title>
-    <link rel="stylesheet" href="{% static 'landing_page/style.css' %}">
+    <link rel="stylesheet" href="{% static 'landing_page/css/style.css' %}">
 </head>
 
 <body>
-    <header>
-        <h1>Welcome to Our Landing Page!</h1>
-    </header>
+   <div class="container">
+        <div class="header-bar">
+            <div>
+                <strong>Power Mac Center</strong>
+                <div>
+                    <span style="font-size: 0.9em; color: #888;">Navigation bar</span>
+                </div>
+            </div>
+            <div class="apple-partner">
+                <img src="{% static 'landing_page/img/apple-logo.png' %}" alt="Apple Logo" style="height: 28px;">
+                <span>Apple Partner</span>
+            </div>
+        </div>
 
     <section id="about">
         <h2>About Us</h2>
@@ -37,23 +47,38 @@
     </section>
 
     <section id="testimonials">
-        <h2>What Our Clients Say</h2>
-        {% if testimonials %}
-            {% for testimonial in testimonials %}
-                <div class="testimonial-item">
-                    <p class="quote">"{{ testimonial.quote }}"</p>
-                    <p class="customer-name">- {{ testimonial.customer_name }}</p>
-                    {% if testimonial.rating %}
-                        <p class="rating">Rating: {{ testimonial.rating }} / 5</p>
-                    {% endif %}
-                </div>
-            {% empty %}
-                <p>No testimonials to display yet.</p>
-            {% endfor %}
-        {% else %}
+    <h2>What Our Clients Say</h2>
+    {% if testimonials %}
+        {% for testimonial in testimonials %}
+            <div class="testimonial-item">
+                {# Display Customer Logo #}
+                {% if testimonial.customer_logo %}
+                    <img src="{{ testimonial.customer_logo.url }}" alt="{{ testimonial.customer_name }}'s logo" style="height: 50px; margin-right: 15px; vertical-align: middle;">
+                {% endif %}
+
+                {# Display Customer Photo (if you've added and uploaded it) #}
+                {% if testimonial.customer_photo %}
+                    <img src="{{ testimonial.customer_photo.url }}" alt="{{ testimonial.customer_name }}'s photo" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 10px;">
+                {% endif %}
+
+                <p class="quote">"{{ testimonial.quote }}"</p>
+                <p class="customer-name">- {{ testimonial.customer_name }}</p>
+
+                {# Display Customer Title and Company (optional, if you want them) #}
+                {% if testimonial.customer_title %}<p class="customer-title">{{ testimonial.customer_title }}</p>{% endif %}
+                {% if testimonial.customer_company %}<p class="customer-company">{{ testimonial.customer_company }}</p>{% endif %}
+
+                {% if testimonial.rating %}
+                    <p class="rating">Rating: {{ testimonial.rating }} / 5</p>
+                {% endif %}
+            </div>
+        {% empty %}
             <p>No testimonials to display yet.</p>
-        {% endif %}
-    </section>
+        {% endfor %}
+    {% else %}
+        <p>No testimonials to display yet.</p>
+    {% endif %}
+</section>
 
     <footer>
         <p>&copy; 2025 Your Company. All rights reserved.</p>

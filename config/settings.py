@@ -80,7 +80,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'oms_db',               # <--- Choose a unique name for your project's database
-        'USER': 'nsi',                # <--- Your PostgreSQL user (e.g., 'django_user')
+        'USER': 'nsi',                  # <--- Your PostgreSQL user (e.g., 'django_user')
         'PASSWORD': 'Apple@123',        # <--- The password for your PostgreSQL user
         'HOST': 'localhost',            # <--- 'localhost' for local development on your machine
         'PORT': '5432',                 # <--- Default PostgreSQL port
