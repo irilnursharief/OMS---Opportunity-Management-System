@@ -1,0 +1,9 @@
+# Virtual Environment venv/ 
+	# Byte-compiled / optimized / DLL files __pycache__/ 
+	*.pyc 
+	*.pyd 
+	*.so 
+
+	# Sensitive environment variables (e.g., for Django SECRET_KEY, DB credentials) .env \
+	# User-uploaded media files (if you don't want to commit them to Git) 
+	# You'll usually configure Django to store these outside the project root on production. media/
