@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    'landing_page'
 ]
 
 MIDDLEWARE = [
@@ -76,11 +79,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'oms_db',         # <--- Choose a unique name for your project's database
-        'USER': 'admin',            # <--- Your PostgreSQL user (e.g., 'django_user')
+        'NAME': 'oms_db',               # <--- Choose a unique name for your project's database
+        'USER': 'nsi',                # <--- Your PostgreSQL user (e.g., 'django_user')
         'PASSWORD': 'Apple@123',        # <--- The password for your PostgreSQL user
-        'HOST': 'localhost',                   # <--- 'localhost' for local development on your machine
-        'PORT': '5432',                        # <--- Default PostgreSQL port
+        'HOST': 'localhost',            # <--- 'localhost' for local development on your machine
+        'PORT': '5432',                 # <--- Default PostgreSQL port
         }
 }
 
@@ -120,6 +123,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'), 
+    os.path.join(BASE_DIR, 'landing_page/static'), 
+]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

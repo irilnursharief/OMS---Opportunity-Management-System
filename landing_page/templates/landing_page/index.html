@@ -1,0 +1,62 @@
+{# landing_page/templates/landing_page/index.html #}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page_title }}</title>
+    <link rel="stylesheet" href="{% static 'landing_page/style.css' %}">
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to Our Landing Page!</h1>
+    </header>
+
+    <section id="about">
+        <h2>About Us</h2>
+        <p>Some introductory text about your company.</p>
+    </section>
+
+    <section id="capabilities">
+        <h2>Our Capabilities</h2>
+        {% if capabilities %}
+            <ul>
+            {% for capability in capabilities %}
+                <li>
+                    <h3>{{ capability.title }}</h3>
+                    <p>{{ capability.description }}</p>
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No capabilities to display yet.</p>
+        {% endif %}
+    </section>
+
+    <section id="testimonials">
+        <h2>What Our Clients Say</h2>
+        {% if testimonials %}
+            {% for testimonial in testimonials %}
+                <div class="testimonial-item">
+                    <p class="quote">"{{ testimonial.quote }}"</p>
+                    <p class="customer-name">- {{ testimonial.customer_name }}</p>
+                    {% if testimonial.rating %}
+                        <p class="rating">Rating: {{ testimonial.rating }} / 5</p>
+                    {% endif %}
+                </div>
+            {% empty %}
+                <p>No testimonials to display yet.</p>
+            {% endfor %}
+        {% else %}
+            <p>No testimonials to display yet.</p>
+        {% endif %}
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Your Company. All rights reserved.</p>
+    </footer>
+</body>
+</html>
